@@ -2,8 +2,9 @@ module Jquery
   module Generators
     class InstallGenerator < ::Rails::Generators::Base
       desc "This generator downloads and installs jQuery, jQuery-ujs HEAD, and (optionally) the newest jQuery UI"
-      class_option :ui, :jqgrid, :type => :boolean, :default => false, :desc => "Include jQueryUI"
+      class_option :ui, :type => :boolean, :default => false, :desc => "Include jQueryUI"
       class_option :version, :type => :string, :default => "1.5", :desc => "Which version of jQuery to fetch"
+      class_option :jqgrid, :type => :boolean, :default => false, :desc => "Include jqGrid"
       @@default_version = "1.5"
 
       def remove_prototype
