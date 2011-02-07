@@ -47,4 +47,9 @@ class Jquery::Generators::InstallGeneratorTest < Rails::Generators::TestCase
     run_generator %w(--ui)
     %w(jquery-ui.min.js jquery-ui.js).each { |js| assert_file "public/javascripts/#{js}" }
   end
+
+  it "should install jquery-jqgrid when asked" do
+    run_generator %w(--jqgrid)
+    %w(jquery.jqGrid.js).each { |js| assert_file "public/javascripts/#{js}" }
+  end
 end
