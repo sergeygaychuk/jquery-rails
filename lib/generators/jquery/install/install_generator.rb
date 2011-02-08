@@ -1,3 +1,5 @@
+require 'net/https'
+
 module Jquery
   module Generators
     class InstallGenerator < ::Rails::Generators::Base
@@ -39,7 +41,15 @@ module Jquery
       
       def download_ujs_driver
         say_status("fetching", "jQuery UJS adapter (github HEAD)", :green)
-        get "https://github.com/rails/jquery-ujs/raw/master/src/rails.js", "public/javascripts/rails.js"
+        url = URI.parse('https://github.com/rails/jquery-ujs/raw/master/src/rails.js')
+        http = Net::HTTP.new(url.host, url.port)
+        http.use_ssl = true
+        http.verify_mode = OpenSSL::SSL::VERIFY_PEER
+        http.ca_file = File.join(File.dirname(__FILE__), "cacert.pem")
+        resp = http.request_get(url.to_s, 'public/javascripts/rails.js')
+        open("public/javascripts/rails.js", "wb") {|file| 
+          file.write(resp.body)
+        }
       end
 
     private
