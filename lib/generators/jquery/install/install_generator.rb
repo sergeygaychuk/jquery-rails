@@ -33,7 +33,7 @@ module Jquery
       def download_jquery_jqgrid
         if options.jqgrid?
           say_status("fetching", "jQuery jqGrid", :green)
-          get "https://github.com/tonytomov/jqGrid/blob/master/jquery.jqGrid.js",     "public/javascripts/jquery.jqGrid.js"
+          get "https://github.com/tonytomov/jqGrid/blob/master/js/grid.base.js",     "public/javascripts/jquery.grid.base.js"
         end
       end
       
